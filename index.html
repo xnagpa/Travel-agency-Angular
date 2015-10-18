@@ -1,55 +1,58 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="thSample">
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet"  href="custom.css">
+    <script src="app.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   </head>
-  <body>
+  <body ng-controller="MountsController">
     <div>
       <div class="container">
         <div class="row">
           <div class="jumbotron">
             <h1>Thinknetica tours!</h1>
             <p>Welcome to the world's most prominient tour company!</p>
-            <a class="btn btn-success" role="button" href=#>Add tour</a>
+            <button ng-click="toggleForm()" class="btn btn-success" role="button">Add tour</button>
           </div>
         </div>
 
         <div class="row">
-          <form class="form-horizontal">
+          <form class="form-horizontal" ng-hide="form_hidden">
             <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+              <label for="inputTitle" class="col-sm-2 control-label">Title</label>
               <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                <input type="text" class="form-control" id="inputTitle" placeholder="Title" ng-model="tour.title">
               </div>
             </div>
             <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+              <label for="inputCountry" class="col-sm-2 control-label">Country</label>
               <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                <input type="text" class="form-control" id="inputCountry" placeholder="Country" ng-model="newTour.country">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputText" class="col-sm-2 control-label">Text</label>
+              <div class="col-sm-10">
+                <input type="textarea" class="form-control" id="inputText" placeholder="Text" ng-model="newTour.text">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPrice" class="col-sm-2 control-label">Price</label>
+              <div class="col-sm-10">
+                <input type="price" class="form-control" id="inputPrice" placeholder="Price" ng-model="newTour.price">
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Remember me
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
+                <button ng-click="addTour()" class="btn btn-default">Submit</button>
               </div>
             </div>
           </form>
         </div>
-
-        <div class="row">
+        <div class="row" ng-repeat="tour in tours">
           <div class="tour clearfix">
             <div class="col-md-12">
 
@@ -58,23 +61,59 @@
               </div>
               <div class="col-md-8">
                 <div class="col-md-4">
-                  <h2>Yet another suburban train</h2>
+                  <h2>{{tour.title}}</h2>
                 </div>
                 <div class="col-md-4 col-md-offset-4">
-                  <h2>140000</h2>
+                  <h2>{{tour.price}}</h2>
                 </div>
               </div>
 
               <div class="col-md-8">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>{{tour.text}}}</p>
                 <div class="col-md-4 col-md-offset-8">
                    <ul class="list-inline">
-                    <li><a class="btn btn-info" role="button" href=#>Edit</a></li>
-                    <li><a class="btn btn-warning" role="button" href=#>Delete</a></li>
+                    <li><a class="btn btn-info" ng-click="changeEditMode(tour)" role="button" href=#>Edit</a></li>
+                    <li><a class="btn btn-warning" role="button" ng-click="removeItem($index)" href=#>Delete</a></li>
                   </ul>
                 </div>
 
               </div>
+
+              <div class="row">
+              <div class="col-md-8 col-md-offset-4">
+               <form class="form-horizontal" ng-hide="tour.edit_mode">
+                  <div class="form-group">
+                    <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputTitle" placeholder="Title" ng-model="tour.title">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputCountry" class="col-sm-2 control-label">Country</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputCountry" placeholder="Country" ng-model="tour.country">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputText" class="col-sm-2 control-label">Text</label>
+                    <div class="col-sm-10">
+                      <input type="textarea" class="form-control" id="inputText" placeholder="Text" ng-model="tour.text">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPrice" class="col-sm-2 control-label">Price</label>
+                    <div class="col-sm-10">
+                      <input type="price" class="form-control" id="inputPrice" placeholder="Price" ng-model="tour.price">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button ng-click="changeEditMode(tour)" class="btn btn-default">OK</button>
+                    </div>
+                  </div>
+               </form>
+               </div>
+               </div>
              </div>
             </div>
           </div>
