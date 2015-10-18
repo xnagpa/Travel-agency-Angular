@@ -1,0 +1,22 @@
+.tour{
+	border: 1px solid gray;
+	padding: 5px;
+}
+
+
+.clearfix:after {
+content: ".";
+display: block;
+clear: both;
+visibility: hidden;
+line-height: 0;
+height: 0;
+}
+
+.clearfix {
+display: inline-block;
+}
+
+html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
