@@ -1,0 +1,23 @@
+<div class="row" ng-repeat="tour in tours">
+  <div class="tour clearfix">
+    <div class="col-md-12">
+
+      <div class="col-md-4">
+        <img src="http://www.w3schools.com/bootstrap/cinqueterre.jpg" class = ".img-rounded"/>
+      </div>
+      <div class="col-md-8">
+        <div class="col-md-4">
+          <h2><a ng-href="/#/tour/{{tour.slug}}">{{tour.title}}</a></h2>
+        </div>
+        <div class="col-md-4 col-md-offset-4">
+          <h2>{{tour.price}}</h2>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <p>{{tour.text}}}</p>
+      </div>
+
+    </div>
+   </div>
+</div>
