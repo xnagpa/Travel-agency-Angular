@@ -1,5 +1,5 @@
 var app = angular.module('thSample',['ngRoute']).
-config(function($routeProvider, $locationProvider){
+config(function($routeProvider, $locationProvider, $httpProvider){
   $routeProvider.when('/edit-tours',{
     templateUrl:"edit-tours.html",
     controller:"AdminToursController",
@@ -10,7 +10,7 @@ config(function($routeProvider, $locationProvider){
       }
     }
   })
-  .when('/tour/:slug',{
+  .when('/tour/:id',{
     templateUrl:"tour.html",
     controller:"TourController",
     publicAccess: true
@@ -29,6 +29,10 @@ config(function($routeProvider, $locationProvider){
     redirectTo: '/'
   });
   $locationProvider.html5Mode(true);
+  $httpProvider.defaults.headers.common = {
+    "X-Parse-Application-Id": "aloL0GB7gZ4raYQiXfDHR6osxiWH0k1ohk2iDc5f",
+    "X-Parse-REST-API-Key": "bhs6jSu3Wo9YkLBcbQBxmK84bRTvV0mLJbZt50ik"
+  };
 }).run(function($rootScope, $route, $location){
   $rootScope.$on("$locationChangeStart", function(event, next, current){
     console.log(event);
@@ -43,26 +47,6 @@ config(function($routeProvider, $locationProvider){
     }
   });
 });
-
-
-allTours = [
-    {
-      title: "Yet another suburban train",
-      edit_mode:true,
-      country: "Russia",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      slug: 1,
-      price: 140000
-    },
-    {
-      title: "Adventure time",
-      edit_mode:true,
-      country: "USA",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      slug: 2,
-      price: 100000
-    }
-];
 
 allCountries = [
   {
