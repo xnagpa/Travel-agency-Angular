@@ -6,7 +6,7 @@ config(function($routeProvider, $locationProvider){
     publicAccess: true
 
   })
-  .when('/tour/:slug',{
+  .when('/tour/:id',{
     templateUrl:"tour.html",
     controller:"TourController",
     publicAccess: true
@@ -25,6 +25,10 @@ config(function($routeProvider, $locationProvider){
     redirectTo: '/'
   });
   $locationProvider.html5Mode(true);
+  $httpProvider.defaults.headers.common = {
+    "X-Parse-Application-Id": "aloL0GB7gZ4raYQiXfDHR6osxiWH0k1ohk2iDc5f",
+    "X-Parse-REST-API-Key": "bhs6jSu3Wo9YkLBcbQBxmK84bRTvV0mLJbZt50ik"
+  };
 }).run(function($rootScope, $route, $location){
   $rootScope.$on("$locationChangeStart", function(event, next, current){
     console.log(event);
@@ -40,6 +44,7 @@ config(function($routeProvider, $locationProvider){
    $scope.formHidden = !$scope.formHidden
   };
 
+<<<<<<< HEAD
   $scope.changeEditMode = function(tour){
    tour.editMode = !tour.editMode
   };
@@ -63,6 +68,8 @@ allTours = [
     }
 ];
 
+=======
+>>>>>>> Adds http API
 allCountries = [
   {
     title: "Russia",
