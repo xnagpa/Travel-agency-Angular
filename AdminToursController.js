@@ -10,6 +10,7 @@ angular.module('thSample').controller('AdminToursController', function($scope, c
       price: null
 
     };
+  $scope.countries = allCountries;
 
   $scope.addTour = function(){
     $scope.tours.push(angular.copy($scope.newTour));
