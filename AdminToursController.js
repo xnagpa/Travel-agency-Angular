@@ -1,6 +1,6 @@
 angular.module('thSample').controller('AdminToursController', function($scope){
   $scope.form_hidden = true;
-  $scope.tours = allTours;
+  $scope.selectedValue = null;
   $scope.newTour =  {
       title: null,
       editMode:true,
@@ -10,6 +10,16 @@ angular.module('thSample').controller('AdminToursController', function($scope){
 
     };
   $scope.countries = allCountries;
+  $http({
+    method: 'GET',
+    url: 'https://api.parse.com/1/classes/Tour'
+  }).then(
+    function(response){
+      console.log(response);
+      $scope.tours = response.data.results;
+    }
+  );
+
 
   $scope.addTour = function(){
     $scope.tours.push(angular.copy($scope.newTour));
