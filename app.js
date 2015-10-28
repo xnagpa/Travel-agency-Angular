@@ -24,25 +24,15 @@ config(function($routeProvider, $locationProvider){
   .otherwise({
     redirectTo: '/'
   });
+
   $locationProvider.html5Mode(true);
 }).run(function($rootScope, $route, $location){
   $rootScope.$on("$locationChangeStart", function(event, next, current){
     console.log(event);
     console.log(next);
     console.log(current);
-    };
-
-  $scope.addTour = function(){
-    $scope.tours.push(angular.copy($scope.newTour));
-  };
-
-  $scope.toggleForm = function(){
-   $scope.formHidden = !$scope.formHidden
-  };
-
-  $scope.changeEditMode = function(tour){
-   tour.editMode = !tour.editMode
-  };
+    });
+  });
 
 allTours = [
     {
