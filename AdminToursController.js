@@ -1,10 +1,9 @@
-angular.module('thSample').controller('AdminToursController', function($scope, currentUser){
-  console.log(currentUser);
+angular.module('thSample').controller('AdminToursController', function($scope){
   $scope.form_hidden = true;
   $scope.tours = allTours;
   $scope.newTour =  {
       title: null,
-      edit_mode:true,
+      editMode:true,
       country: null,
       text: null,
       price: null
@@ -21,7 +20,7 @@ angular.module('thSample').controller('AdminToursController', function($scope, c
   };
 
   $scope.changeEditMode = function(tour){
-    tour.edit_mode = !tour.edit_mode
+    tour.editMode = !tour.editMode
   };
 
    $scope.removeItem = function(index){
