@@ -1,3 +1,39 @@
+<div class="row">
+  <button ng-click="toggleForm()" class="btn btn-success" role="button">Add tour</button>
+</div>
+<div class="row">
+  <form class="form-horizontal" ng-hide="form_hidden">
+    <div class="form-group">
+      <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputTitle" placeholder="Title" ng-model="tour.title">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputCountry" class="col-sm-2 control-label">Country</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputCountry" placeholder="Country" ng-model="newTour.country">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputText" class="col-sm-2 control-label">Text</label>
+      <div class="col-sm-10">
+        <input type="textarea" class="form-control" id="inputText" placeholder="Text" ng-model="newTour.text">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPrice" class="col-sm-2 control-label">Price</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="inputPrice" placeholder="Price" ng-model="newTour.price">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button ng-click="addTour()" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
 <div class="row" ng-repeat="tour in tours">
   <div class="tour clearfix">
     <div class="col-md-12">
