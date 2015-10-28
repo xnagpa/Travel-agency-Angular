@@ -44,12 +44,6 @@ config(function($routeProvider, $locationProvider){
    tour.editMode = !tour.editMode
   };
 
-   $scope.removeItem = function(index){
-    $scope.tours.splice(index, 1);
-  }
-});
-
-
 allTours = [
     {
       title: "Yet another suburban train",
