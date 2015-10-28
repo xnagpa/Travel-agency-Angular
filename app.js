@@ -1,4 +1,4 @@
-var app = angular.module('thSample',['ngRoute']).
+var app = angular.module('thSample',['ngRoute','ngResource']).
 config(function($routeProvider, $locationProvider, $httpProvider){
   $routeProvider.when('/edit-tours',{
     templateUrl:"edit-tours.html",

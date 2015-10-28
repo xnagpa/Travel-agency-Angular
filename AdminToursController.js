@@ -1,29 +1,31 @@
-angular.module('thSample').controller('AdminToursController', function($scope, $http,currentUser){
+angular.module('thSample').controller('AdminToursController', function($scope, $resource, currentUser){
   console.log(currentUser);
   $scope.form_hidden = true;
   $scope.selectedValue = null;
-  $scope.newTour =  {
-      title: null,
-      edit_mode:true,
-      country: null,
-      text: null,
-      price: null
-
-    };
+  $scope.newTour =  {};
   $scope.countries = allCountries;
-  $http({
-    method: 'GET',
-    url: 'https://api.parse.com/1/classes/Tour'
-  }).then(
-    function(response){
-      console.log(response);
-      $scope.tours = response.data.results;
-    }
-  );
+
+  function parseResults(data, headersGetter)
+  {
+    data = angular.fromJson(data);
+    return data.results;
+
+  }
+
+  var Tour = $resource('https://api.parse.com/1/classes/Tour/:objectId',
+    {objectId: '@objectId'},
+    {query:{isArray: true, transformResponse: parseResults}});
+  $scope.tours = Tour.query();
 
 
   $scope.addTour = function(){
-    $scope.tours.push(angular.copy($scope.newTour));
+    var tourToServer = new Tour($scope.newTour);
+    tourToServer.$save().then(
+      function(tour){
+        var tourFromServer = angular.extend(tour,$scope.newTour);
+        $scope.tours.push(tourFromServer);
+        $scope.newTour = {};
+      });
   };
 
   $scope.toggleForm = function(){
