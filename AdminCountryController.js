@@ -2,11 +2,11 @@ angular.module('thSample').controller('AdminCountryController', function($scope,
   $scope.countries = allCountries;
   $scope.newCountry=  {
       title: null,
-      edit_mode:false,
+      editMode:false,
     };
 
   $scope.changeEditMode = function(country){
-    country.edit_mode = !country.edit_mode
+    country.editMode = !country.editMode
   };
 
   $scope.removeItem = function(index){
