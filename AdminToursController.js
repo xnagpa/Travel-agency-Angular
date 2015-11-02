@@ -35,15 +35,12 @@ angular.module('thSample').controller('AdminToursController', function($scope, $
         $scope.tours.push(tourFromServer);
         $scope.newTour = {};
       });
-<<<<<<< HEAD
   };
 
   $scope.editTour = function(index){
     $scope.changeEditMode($scope.tours[index]);
     Tour.update($scope.tours[index]);
     $scope.countries = Country.query();
-=======
->>>>>>> Adds api functionality from screencast
   };
 
   $scope.toggleForm = function(){
