@@ -16,6 +16,11 @@ config(function($routeProvider, $locationProvider){
     controller:"AdminCountryController",
     publicAccess: true
   })
+  .when('/edit-places',{
+    templateUrl:"edit-places.html",
+    controller:"AdminPlacesController",
+    publicAccess: true
+  })
   .when('/',{
     templateUrl:"tours.html",
     controller:"ToursController",
@@ -43,41 +48,3 @@ config(function($routeProvider, $locationProvider){
   $scope.toggleForm = function(){
    $scope.formHidden = !$scope.formHidden
   };
-
-<<<<<<< HEAD
-  $scope.changeEditMode = function(tour){
-   tour.editMode = !tour.editMode
-  };
-
-allTours = [
-    {
-      title: "Yet another suburban train",
-      editMode:true,
-      country: "Russia",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      slug: 1,
-      price: 140000
-    },
-    {
-      title: "Adventure time",
-      editMode:true,
-      country: "USA",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      slug: 2,
-      price: 100000
-    }
-];
-
-=======
->>>>>>> Adds http API
-allCountries = [
-  {
-    title: "Russia",
-    editMode:true
-  },
-  {
-    title: "Poland",
-    editMode:true
-  }
-];
-
