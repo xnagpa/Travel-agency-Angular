@@ -20,6 +20,11 @@ config(function($routeProvider, $locationProvider, $httpProvider){
     controller:"AdminCountryController",
     publicAccess: true
   })
+  .when('/edit-places',{
+    templateUrl:"edit-places.html",
+    controller:"AdminPlacesController",
+    publicAccess: true
+  })
   .when('/',{
     templateUrl:"tours.html",
     controller:"ToursController",
@@ -47,15 +52,4 @@ config(function($routeProvider, $locationProvider, $httpProvider){
     }
   });
 });
-
-allCountries = [
-  {
-    title: "Russia",
-    edit_mode:true
-  },
-  {
-    title: "Poland",
-    edit_mode:true
-  }
-];
 
