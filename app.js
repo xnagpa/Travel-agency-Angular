@@ -45,4 +45,7 @@ config(function($routeProvider, $locationProvider){
   });
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9042ade396c93695d4bdd5b67287cbe70ccc3e14
