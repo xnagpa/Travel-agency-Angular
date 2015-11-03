@@ -1,16 +1,48 @@
-angular.module('thSample').controller('AdminCountryController', function($scope, $routeParams){
-  $scope.countries = allCountries;
-  $scope.newCountry=  {
-      title: null,
-      editMode:false,
-    };
+angular.module('thSample').controller('AdminCountryController', function($scope, $resource){
+
+  $scope.newCountry= {
+    editMode: true
+  };
+
+  function parseResults(data, headersGetter)
+  {
+    data = angular.fromJson(data);
+    return data.results;
+
+  }
+
+  var Country = $resource('https://api.parse.com/1/classes/Country/:objectId',
+    {objectId: '@objectId'},
+    {
+      query:{isArray: true, transformResponse: parseResults},
+      update: { method:'PUT' }
+    }
+  );
+  $scope.countries = Country.query();
+
+  $scope.addCountry = function(){
+    var countryToServer = new Country($scope.newCountry);
+    countryToServer.$save().then(
+      function(tour){
+        var countryFromServer = angular.extend(tour,$scope.newCountry);
+        $scope.countries.push(countryFromServer);
+        $scope.newCountry = {};
+      });
+  };
 
   $scope.changeEditMode = function(country){
     country.editMode = !country.editMode
   };
 
-  $scope.removeItem = function(index){
+  $scope.editCountry = function(index){
+    $scope.changeEditMode($scope.countries[index]);
+    Country.update($scope.countries[index]);
+  };
+
+  $scope.removeCountry = function(index){
+    Country.delete({objectId: $scope.countries[index].objectId}).then(function(){
     $scope.countries.splice(index, 1);
+  });
   };
 
 });
