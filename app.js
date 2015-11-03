@@ -45,4 +45,3 @@ config(function($routeProvider, $locationProvider){
   });
 });
 
-
