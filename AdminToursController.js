@@ -52,8 +52,9 @@ angular.module('thSample').controller('AdminToursController', function($scope, $
   };
 
   $scope.removeTour = function(index){
-    Tour.delete({objectId: $scope.tours[index].objectId});
+    Tour.delete({objectId: $scope.tours[index].objectId}).then(function(){
     $scope.tours.splice(index, 1);
-  }
+    });
+  };
 
 });

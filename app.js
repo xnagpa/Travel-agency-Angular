@@ -40,10 +40,6 @@ config(function($routeProvider, $locationProvider, $httpProvider){
   };
 }).run(function($rootScope, $route, $location){
   $rootScope.$on("$locationChangeStart", function(event, next, current){
-    console.log(event);
-    console.log(next);
-    console.log(current);
-
     var nextPath = $location.path();
     var nextRoute = $route.routes[nextPath] || $route.routes['/tour/:slug'];
     if (!nextRoute.publicAccess){

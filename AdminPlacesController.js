@@ -39,7 +39,8 @@ angular.module('thSample').controller('AdminPlacesController', function($scope, 
   };
 
   $scope.removePlace = function(index){
-    Place.delete({objectId: $scope.places[index].objectId});
+    Place.delete({objectId: $scope.places[index].objectId}).then(function(){
     $scope.places.splice(index, 1);
+    });
   };
 });
