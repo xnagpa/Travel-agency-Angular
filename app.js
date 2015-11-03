@@ -45,7 +45,4 @@ config(function($routeProvider, $locationProvider){
   });
 });
 
-  $scope.toggleForm = function(){
-   $scope.formHidden = !$scope.formHidden
-  };
 
