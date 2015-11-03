@@ -36,14 +36,14 @@ config(function($routeProvider, $locationProvider){
   };
 }).run(function($rootScope, $route, $location){
   $rootScope.$on("$locationChangeStart", function(event, next, current){
-    console.log(event);
-    console.log(next);
-    console.log(current);
-    };
-
-  $scope.addTour = function(){
-    $scope.tours.push(angular.copy($scope.newTour));
-  };
+    var nextPath = $location.path();
+    var nextRoute = $route.routes[nextPath] || $route.routes['/tour/:slug'];
+    if (!nextRoute.publicAccess){
+      alert('Необходима регистрация.')
+      $location.path('/');
+    }
+  });
+});
 
   $scope.toggleForm = function(){
    $scope.formHidden = !$scope.formHidden

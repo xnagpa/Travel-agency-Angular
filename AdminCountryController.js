@@ -40,8 +40,9 @@ angular.module('thSample').controller('AdminCountryController', function($scope,
   };
 
   $scope.removeCountry = function(index){
-    Country.delete({objectId: $scope.countries[index].objectId});
+    Country.delete({objectId: $scope.countries[index].objectId}).then(function(){
     $scope.countries.splice(index, 1);
+  });
   };
 
 });
