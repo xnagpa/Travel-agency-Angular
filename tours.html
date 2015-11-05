@@ -1,11 +1,14 @@
 <div class="row">
   <div class="col-md-12">
-    <select class="form-control" id="selectCountry" ng-model="searchText" ng-options="val.title for val in countries">
+    <select class="form-control" id="selectCountry" ng-model="searchCountry" ng-options="val.objectId as val.title for val in countries">
       <option value="">Select country</option>
+    </select>
+    <select class="form-control" id="selectPlace" ng-model="searchPlace" ng-options="val.CountryId as val.title for val in places | filter:searchCountry">
+      <option value="">Select place</option>
     </select>
   </div>
 </div>
-<div class="row" ng-repeat="tour in tours | filter:searchText.title">
+<div class="row" ng-repeat="tour in tours | filter:searchPlace">
   <div class="tour clearfix">
     <div class="col-md-12">
       <div class="col-md-4">

@@ -1,5 +1,5 @@
-angular.module('thSample',['ngRoute']).
-config(function($routeProvider, $locationProvider){
+angular.module('thSample',['ngRoute','ngResource']).
+config(function($routeProvider, $locationProvider, $httpProvider){
   $routeProvider.when('/edit-tours',{
     templateUrl:"edit-tours.html",
     controller:"AdminToursController",
