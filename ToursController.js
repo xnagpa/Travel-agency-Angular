@@ -29,8 +29,17 @@ angular.module('thSample').controller('ToursController', function($scope, $resou
     }
   );
 
+  var Hotel = $resource('https://api.parse.com/1/classes/Hotel/:objectId',
+    {objectId: '@objectId'},
+    {
+      query:{isArray: true, transformResponse: parseResults}
+    }
+  );
+
+  $scope.hotels = Hotel.query();
   $scope.places = Place.query();
   $scope.countries = Country.query();
   $scope.tours = Tour.query();
+
 
 });
