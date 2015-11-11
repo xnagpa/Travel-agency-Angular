@@ -14,11 +14,29 @@ angular.module('thSample').controller('AdminToursController', function($scope, $
     }
   );
 
+  var Hotel = $resource('https://api.parse.com/1/classes/Hotel/:objectId',
+    {objectId: '@objectId'},
+    {
+      query:{isArray: true, transformResponse: parseResults}
+    }
+  );
+
+  var Place = $resource('https://api.parse.com/1/classes/Place/:objectId',
+    {objectId: '@objectId'},
+    {
+      query:{isArray: true, transformResponse: parseResults},
+      update: { method:'PUT' }
+    }
+  );
+
   $scope.form_hidden = true;
   $scope.selectedValue = null;
   $scope.newTour =  {};
+
   $scope.tours = Tour.query();
   $scope.countries = Country.query();
+  $scope.hotels = Hotel.query();
+  $scope.places = Place.query();
 
   function parseResults(data, headersGetter)
   {
@@ -54,6 +72,18 @@ angular.module('thSample').controller('AdminToursController', function($scope, $
   $scope.removeTour = function(index){
     Tour.delete({objectId: $scope.tours[index].objectId}).then(function(){
     $scope.tours.splice(index, 1);
+    });
+  };
+
+  $scope.findCountryForTour = function(CountryId){
+    return _.find($scope.countries, function(country){
+      return CountryId === country.objectId
+    });
+  };
+
+  $scope.findHotelForTour = function(HotelId){
+    return _.find($scope.hotels, function(hotel){
+      return HotelId === hotel.objectId
     });
   };
 

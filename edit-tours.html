@@ -45,7 +45,10 @@
           <h2><a ng-href="/#/tour/{{tour.objectId}}">{{tour.title}}</a></h2>
         </div>
         <div class="col-md-2 col-md-offset-4">
-          <h2>{{ tour.CountryId }}</h2>
+          <h2>{{ findCountryForTour(tour.CountryId).title }}</h2>
+        </div>
+        <div class="col-md-2 col-md-offset-4">
+          <h4>Hotel: {{ findHotelForTour(tour.HotelId).title }}</h4>
         </div>
         <div class="col-md-2 col-md-offset-4">
           <h2>{{tour.price}}</h2>
@@ -77,6 +80,14 @@
             <div class="col-sm-10">
               <select class="form-control" id="selectCountry" ng-model="tour.CountryId" ng-options="val.objectId as val.title for val in countries">
                 <option value="">Select country</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputHotel" class="col-sm-2 control-label">Hotel</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="selectotel" ng-model="tour.HotelId" ng-options="val.objectId as val.title for val in hotels">
+                <option value="">Select hotel</option>
               </select>
             </div>
           </div>
