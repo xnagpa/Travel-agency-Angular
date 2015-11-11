@@ -21,6 +21,11 @@ config(function($routeProvider, $locationProvider, $httpProvider){
     controller:"AdminPlacesController",
     publicAccess: true
   })
+  .when('/edit-hotels',{
+    templateUrl:"edit-hotels.html",
+    controller:"AdminHotelsController",
+    publicAccess: true
+  })
   .when('/',{
     templateUrl:"tours.html",
     controller:"ToursController",

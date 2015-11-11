@@ -6,13 +6,24 @@
     <div class="form-group">
       <label for="inputTitle" class="col-sm-2 control-label">Title</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputTitle" placeholder="Title" ng-model="tour.title">
+        <input type="text" class="form-control" id="inputTitle" placeholder="Title" ng-model="newTour.title">
       </div>
     </div>
     <div class="form-group">
-      <select class="form-control" id="selectCountry" ng-model="newTour.CountryId" ng-options="val.title for val in countries">
-        <option value="{{ val.objectId }}">Select country</option>
-      </select>
+      <label for="selectCountry" class="col-sm-2 control-label">Country</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="selectCountry" ng-model="newTour.CountryId" ng-options="val.objectId as val.title for val in countries">
+          <option value="{{ val.objectId }}">Select country</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="selectHotel" class="col-sm-2 control-label">Hotel</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="selectHotel" ng-model="newTour.HotelId" ng-options="val.objectId as val.title for val in hotels">
+          <option value="{{ val.objectId }}">Select hotel</option>
+        </select>
+      </div>
     </div>
     <div class="form-group">
       <label for="inputText" class="col-sm-2 control-label">Text</label>

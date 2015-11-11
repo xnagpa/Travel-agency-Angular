@@ -6,5 +6,5 @@ angular.module('thSample').controller('TourController', function($scope, $routeP
     {objectId: '@objectId'}
   );
   $scope.tour = Tour.get({objectId: $routeParams.id});
-  $scope.country = Country.get({objectId: tour.CountryId})
+  $scope.country = Country.get({objectId: $scope.tour.CountryId})
 });
